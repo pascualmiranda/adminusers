@@ -18,6 +18,10 @@ public class User {
     private LocalDateTime createdAt;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private UserDetail userDetail;
+
+    public User() {
+    }
+
     public User(String username, String password, String email, LocalDateTime createdAt) {
         this.username = username;
         this.password = password;
