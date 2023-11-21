@@ -1,20 +1,22 @@
 package com.pmn.adminusers.domain.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="public.user")
+@Table(name="\"user\"")
 public class User {
     @Id
     @SequenceGenerator(name = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
-    private long id;
+    private Long id;
     private String username;
     private String password;
     private String email;
     @Column(name = "created_at", columnDefinition = "TIMESTAMP")
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private UserDetail userDetail;
@@ -29,11 +31,11 @@ public class User {
         this.createdAt = createdAt;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
