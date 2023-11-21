@@ -1,10 +1,12 @@
 package com.pmn.adminusers.services;
 
-import com.pmn.adminusers.domain.entities.User;
+import com.pmn.adminusers.dto.UserDTO;
+import com.pmn.adminusers.dto.UserViewDTO;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> listUsers();
-    User save(User user);
+    List<UserViewDTO> listUsers();
+    UserDTO save(UserDTO userDTO);
+    void delete(Long id);
 }

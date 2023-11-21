@@ -15,7 +15,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    @Column(name = "created_at", columnDefinition = "TIMESTAMP")
+    @Column(name = "created_at", columnDefinition = "TIMESTAMP", nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -24,11 +24,12 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password, String email, LocalDateTime createdAt) {
+    public User(String username, String password, String email, LocalDateTime createdAt, UserDetail userDetail) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.createdAt = createdAt;
+        this.userDetail = userDetail;
     }
 
     public Long getId() {
@@ -69,5 +70,13 @@ public class User {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public UserDetail getUserDetail() {
+        return userDetail;
+    }
+
+    public void setUserDetail(UserDetail userDetail) {
+        this.userDetail = userDetail;
     }
 }

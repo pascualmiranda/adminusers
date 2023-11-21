@@ -8,6 +8,7 @@ import com.pmn.adminusers.services.mapper.RolMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,6 +25,15 @@ public class RolServiceImpl implements RolService {
         return rolRepository.findAll()
                 .stream()
                 .map(rolMapper::toDto).collect(Collectors.toList());
+    }
+    @Override
+    public Optional<RolDTO> getRolById(Integer id) {
+        return rolRepository.findById(id).map(rolMapper::toDto);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        rolRepository.deleteById(id);
     }
 
     @Override

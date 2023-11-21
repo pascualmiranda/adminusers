@@ -11,9 +11,9 @@ public class UserRol {
     @Id
     @SequenceGenerator(name = "user_rol_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_rol_sequence")
-    private int id;
+    private Integer id;
     private boolean active;
-    @Column(name="created_at", columnDefinition = "TIMESTAMP")
+    @Column(name="created_at", columnDefinition = "TIMESTAMP", nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime createdAt;
     @ManyToOne(fetch = FetchType.EAGER)
@@ -33,11 +33,11 @@ public class UserRol {
         this.rol = rol;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

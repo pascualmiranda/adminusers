@@ -24,12 +24,23 @@ public class RolController {
 
         return ResponseEntity.ok().body(rolService.listRoles());
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<RolDTO> getRolById(@PathVariable final Integer id){
+        return ResponseEntity
+                .ok()
+                .body(rolService.getRolById(id).orElseThrow(() -> new IllegalArgumentException("Excepción. recurso no encontrado para id: " + id)));
+    }
     @PostMapping
     public ResponseEntity<RolDTO> create(@RequestBody final RolDTO rol) throws URISyntaxException {
-        if(rol.getId()!=null){
-            throw new IllegalArgumentException("El nuevo estudiante no puede tener un id.");
-        }
+        /*if(rol.getId()!=null){
+            throw new IllegalArgumentException("El nuevo rol no puede tener un id.");
+        }*/
         RolDTO rolDB=rolService.save(rol);
         return ResponseEntity.created(new URI("v1/roles"+rolDB.getId())).body(rolDB);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable final Integer id) {
+        rolService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
