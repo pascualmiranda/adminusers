@@ -1,6 +1,7 @@
 package com.pmn.adminusers.domain.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -12,7 +13,8 @@ public class UserRol {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_rol_sequence")
     private int id;
     private boolean active;
-    @Column(name="create_at", columnDefinition = "TIMESTAMP")
+    @Column(name="created_at", columnDefinition = "TIMESTAMP")
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="user_id")

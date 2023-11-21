@@ -4,7 +4,7 @@ create table "user" (
                          username varchar(150) not null,
                          password varchar(150) not null,
                          email varchar(150),
-                         create_at timestamp,
+                         created_at timestamp,
                          primary key (id)
 );
 
@@ -43,7 +43,7 @@ create sequence rol_sequence as integer increment 1;
 create table user_rol (
 			id integer not null,
 			active boolean not null,
-			create_at timestamp not null,
+			created_at timestamp not null,
 			user_id bigint,
 			rol_id integer,
 			primary key (id)
