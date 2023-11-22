@@ -12,6 +12,7 @@ public class UserRol {
     @SequenceGenerator(name = "user_rol_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_rol_sequence")
     private Integer id;
+
     private boolean active;
     @Column(name="created_at", columnDefinition = "TIMESTAMP", nullable = false, updatable = false)
     @CreationTimestamp

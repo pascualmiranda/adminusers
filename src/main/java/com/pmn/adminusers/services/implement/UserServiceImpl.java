@@ -36,6 +36,12 @@ public class UserServiceImpl implements UserService {
                 .stream()
                 .map(userViewMapper::toDto).collect(Collectors.toList());
     }
+    public List<UserViewDTO> listUsersDetailed() {
+
+        return userRepository.findAll()
+                .stream()
+                .map(userViewMapper::toDtoDetailed).collect(Collectors.toList());
+    }
 
     @Override
     @Transactional
@@ -44,16 +50,16 @@ public class UserServiceImpl implements UserService {
         if (userDTO.getFirstName()!=null){
             UserDetail userDetail=new UserDetail(userDTO.getFirstName(), userDTO.getLastName(), userDTO.getAge(), userDTO.getBirthDay(),user);
             userDetailRepository.save(userDetail);
-            return userMapper.toDtoDetailed(user);
+            //return userMapper.toDtoDetailed(user);
         }
-        else
+        //else {
             return userMapper.toDto(user);
+        //}
     }
 
     @Override
+    @Transactional
     public void delete(Long id) {
-        //User user=userRepository.getUserById(id);
-        //userDetailRepository.deleteById();
         userRepository.deleteById(id);
     }
 

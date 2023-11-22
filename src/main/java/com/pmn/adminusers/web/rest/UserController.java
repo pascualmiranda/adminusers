@@ -19,9 +19,14 @@ public class UserController {
         this.userService = userService;
     }
     @GetMapping
-    public ResponseEntity<List<UserViewDTO>> listUsers(){
+    public ResponseEntity<List<UserViewDTO>> listUsers(@RequestParam(required = false, defaultValue = "false") boolean detailed){
+        if (detailed) {
+            return ResponseEntity.ok().body(userService.listUsersDetailed());
+        }
+        else {
+            return ResponseEntity.ok().body(userService.listUsers());
+        }
 
-        return ResponseEntity.ok().body(userService.listUsers());
     }
     @PostMapping
     public ResponseEntity<UserDTO> create(@RequestBody final UserDTO userDTO) throws URISyntaxException {
