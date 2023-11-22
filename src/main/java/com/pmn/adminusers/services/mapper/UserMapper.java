@@ -4,6 +4,8 @@ import com.pmn.adminusers.domain.entities.User;
 import com.pmn.adminusers.dto.UserDTO;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
+
 @Component
 public class UserMapper implements CustomMapper<UserDTO, User> {
 
@@ -23,10 +25,18 @@ public class UserMapper implements CustomMapper<UserDTO, User> {
         userDTO.setUsername(user.getUsername());
         userDTO.setPassword("******");
         userDTO.setEmail(user.getEmail());
-        userDTO.setFirstName(user.getUserDetail().getFirstName());
-        userDTO.setLastName(user.getUserDetail().getLastName());
-        userDTO.setAge(user.getUserDetail().getAge());
-        userDTO.setBirthDay(user.getUserDetail().getBirthDay());
+        if (user.getUserDetail()!=null) {
+            userDTO.setFirstName(user.getUserDetail().getFirstName());
+            userDTO.setLastName(user.getUserDetail().getLastName());
+            userDTO.setAge(user.getUserDetail().getAge());
+            userDTO.setBirthDay(user.getUserDetail().getBirthDay());
+        }
+        else {
+            userDTO.setFirstName("No asignado");
+            userDTO.setLastName("No asignado");
+            userDTO.setAge(0);
+            userDTO.setBirthDay(LocalDate.now());
+        }
         return userDTO;
     }
 

@@ -1,9 +1,13 @@
 package com.pmn.adminusers.domain.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name="\"user\"")
@@ -12,6 +16,7 @@ public class User {
     @SequenceGenerator(name = "user_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
     private Long id;
+    @NotBlank(message = "El nombre de usuario es requerido")
     private String username;
     private String password;
     private String email;
@@ -20,6 +25,9 @@ public class User {
     private LocalDateTime createdAt;
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private UserDetail userDetail;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserRol> userRoles;
 
     public User() {
     }
@@ -78,5 +86,13 @@ public class User {
 
     public void setUserDetail(UserDetail userDetail) {
         this.userDetail = userDetail;
+    }
+
+    public List<UserRol> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<UserRol> userRoles) {
+        this.userRoles = userRoles;
     }
 }

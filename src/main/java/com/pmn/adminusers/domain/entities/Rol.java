@@ -2,6 +2,9 @@ package com.pmn.adminusers.domain.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table(name="rol")
 public class Rol {
@@ -10,6 +13,8 @@ public class Rol {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rol_sequence")
     private  Integer id;
     private String name;
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<UserRol> userRoles;
 
     public Rol() {
     }
@@ -32,5 +37,13 @@ public class Rol {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<UserRol> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(List<UserRol> userRoles) {
+        this.userRoles = userRoles;
     }
 }
