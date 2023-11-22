@@ -14,7 +14,7 @@ public class Rol {
     private  Integer id;
     private String name;
     @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<UserRol> userRoles;
+    private Set<UserRol> userRoles;
 
     public Rol() {
     }
@@ -39,11 +39,11 @@ public class Rol {
         this.name = name;
     }
 
-    public List<UserRol> getUserRoles() {
+    public Set<UserRol> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRol> userRoles) {
+    public void setUserRoles(Set<UserRol> userRoles) {
         this.userRoles = userRoles;
     }
 }

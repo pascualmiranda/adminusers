@@ -27,7 +27,7 @@ public class User {
     private UserDetail userDetail;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<UserRol> userRoles;
+    private Set<UserRol> userRoles;
 
     public User() {
     }
@@ -88,11 +88,11 @@ public class User {
         this.userDetail = userDetail;
     }
 
-    public List<UserRol> getUserRoles() {
+    public Set<UserRol> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRol> userRoles) {
+    public void setUserRoles(Set<UserRol> userRoles) {
         this.userRoles = userRoles;
     }
 }

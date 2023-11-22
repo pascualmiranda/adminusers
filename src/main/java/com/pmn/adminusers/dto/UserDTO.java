@@ -4,6 +4,8 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -19,4 +21,5 @@ public class UserDTO {
     private String lastName;
     private Integer age;
     private LocalDate birthDay;
+    private Set<Integer> roles;
 }
