@@ -17,10 +17,11 @@ import java.util.stream.Collectors;
 public class RolServiceImpl implements RolService {
     private final RolRepository rolRepository;
     private final RolMapper rolMapper;
-    private RolUserJdbcRepository rolUserJdbcRepository;
-    public RolServiceImpl(RolRepository rolRepository, RolMapper rolMapper) {
+    private final RolUserJdbcRepository rolUserJdbcRepository;
+    public RolServiceImpl(RolRepository rolRepository, RolMapper rolMapper, RolUserJdbcRepository rolUserJdbcRepository) {
         this.rolRepository = rolRepository;
         this.rolMapper = rolMapper;
+        this.rolUserJdbcRepository = rolUserJdbcRepository;
     }
 
     @Override
