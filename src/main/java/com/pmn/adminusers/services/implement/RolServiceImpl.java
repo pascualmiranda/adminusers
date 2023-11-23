@@ -2,7 +2,9 @@ package com.pmn.adminusers.services.implement;
 
 import com.pmn.adminusers.domain.entities.Rol;
 import com.pmn.adminusers.dto.RolDTO;
+import com.pmn.adminusers.dto.UserViewDTO;
 import com.pmn.adminusers.repositories.RolRepository;
+import com.pmn.adminusers.repositories.jdbc.RolUserJdbcRepository;
 import com.pmn.adminusers.services.RolService;
 import com.pmn.adminusers.services.mapper.RolMapper;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,7 @@ import java.util.stream.Collectors;
 public class RolServiceImpl implements RolService {
     private final RolRepository rolRepository;
     private final RolMapper rolMapper;
+    private RolUserJdbcRepository rolUserJdbcRepository;
     public RolServiceImpl(RolRepository rolRepository, RolMapper rolMapper) {
         this.rolRepository = rolRepository;
         this.rolMapper = rolMapper;
@@ -26,6 +29,12 @@ public class RolServiceImpl implements RolService {
                 .stream()
                 .map(rolMapper::toDto).collect(Collectors.toList());
     }
+
+    @Override
+    public List<UserViewDTO> listUsersByRolId(Integer rolId) {
+        return rolUserJdbcRepository.listUsersByRolId(rolId);
+    }
+
     @Override
     public Optional<RolDTO> getRolById(Integer id) {
         return rolRepository.findById(id).map(rolMapper::toDto);

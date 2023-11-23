@@ -1,6 +1,7 @@
 package com.pmn.adminusers.domain.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 import java.util.Set;
@@ -12,6 +13,7 @@ public class Rol {
     @SequenceGenerator(name = "rol_sequence", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rol_sequence")
     private  Integer id;
+    @NotBlank(message = "El nombre del rol es requerido")
     private String name;
     @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<UserRol> userRoles;

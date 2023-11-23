@@ -1,6 +1,7 @@
 package com.pmn.adminusers.domain.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 @Entity
@@ -11,8 +12,10 @@ public class UserDetail {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_detail_sequence")
     private Long id;
     @Column(name="first_name")
+    @NotBlank(message = "El primer nombre es requerido")
     private String firstName;
     @Column(name="last_name")
+    @NotBlank(message = "El segundo nombre es requerido")
     private String lastName;
     private Integer age;
     @Column(name="birth_day")

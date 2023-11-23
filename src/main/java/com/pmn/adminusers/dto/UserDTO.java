@@ -1,5 +1,6 @@
 package com.pmn.adminusers.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,7 +15,9 @@ import java.util.Set;
 @AllArgsConstructor
 public class UserDTO {
     private Long id;
+    @NotBlank(message = "El nombre de usuario es requerido")
     private String username;
+    @NotBlank(message = "La contraseña de usuario es requerido")
     private String password;
     private String email;
     private String firstName;
