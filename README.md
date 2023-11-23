@@ -4,7 +4,7 @@
 # Antes de ejecutar configurar las conexiones a la base de datos Postgresql de la siguiente forma
 
     url: jdbc:postgresql://localhost:5432/dev_user_db
-    username: userAmin
+    username: useramin
     password: uadmin123
 
 # Tambien crear las bases de datos
