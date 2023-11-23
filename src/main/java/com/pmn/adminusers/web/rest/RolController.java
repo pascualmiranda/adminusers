@@ -3,7 +3,9 @@ package com.pmn.adminusers.web.rest;
 import com.pmn.adminusers.domain.entities.Rol;
 import com.pmn.adminusers.domain.entities.User;
 import com.pmn.adminusers.dto.RolDTO;
+import com.pmn.adminusers.dto.UserViewDTO;
 import com.pmn.adminusers.services.RolService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,7 +33,7 @@ public class RolController {
                 .body(rolService.getRolById(id).orElseThrow(() -> new IllegalArgumentException("Excepción. recurso no encontrado para id: " + id)));
     }
     @PostMapping
-    public ResponseEntity<RolDTO> create(@RequestBody final RolDTO rol) throws URISyntaxException {
+    public ResponseEntity<RolDTO> create(@Valid @RequestBody final RolDTO rol) throws URISyntaxException {
         /*if(rol.getId()!=null){
             throw new IllegalArgumentException("El nuevo rol no puede tener un id.");
         }*/
@@ -42,5 +44,9 @@ public class RolController {
     public ResponseEntity<Void> delete(@PathVariable final Integer id) {
         rolService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+    @GetMapping("/{rolId}/users")
+    public ResponseEntity<List<UserViewDTO>> listUsersByRolId(@PathVariable final Integer rolId) {
+        return ResponseEntity.ok().body(rolService.listUsersByRolId(rolId));
     }
 }
