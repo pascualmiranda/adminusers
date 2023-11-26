@@ -18,7 +18,7 @@ public class User {
     private Long id;
     @NotBlank(message = "El nombre de usuario es requerido")
     private String username;
-    @NotBlank(message = "La contraseña de usuario es requerido")
+    //@NotBlank(message = "La contraseña de usuario es requerido")
     private String password;
     private String email;
     @Column(name = "created_at", columnDefinition = "TIMESTAMP", nullable = false, updatable = false)

@@ -17,7 +17,7 @@ public class UserDTO {
     private Long id;
     @NotBlank(message = "El nombre de usuario es requerido")
     private String username;
-    @NotBlank(message = "La contraseña de usuario es requerido")
+    //@NotBlank(message = "La contraseña de usuario es requerido")
     private String password;
     private String email;
     private String firstName;
